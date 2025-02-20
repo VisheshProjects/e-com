@@ -1,0 +1,36 @@
+server:
+  port: 8080
+#
+#spring:
+#  application:
+#    name: e-gateway
+
+spring:
+  cloud:
+    gateway:
+
+      discovery:
+        locator:
+          enabled: true  # Enable service discovery for routes
+          lower-case-service-id: true  # Makes service names lowercase
+
+#      routes:
+#        - id: hello-ms
+#          uri: lb://hello-ms  #http://localhost:8081
+#          predicates:
+#            - path = /greetings/**
+#
+#        - id: product-ms
+#          uri: lb://product-ms #http://localhost:8082
+#          predicates:
+#            - path = /product/**
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true  # Ensure the gateway registers itself
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true  # Use IP instead of hostname

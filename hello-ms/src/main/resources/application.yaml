@@ -1,2 +1,33 @@
 server:
   port: 8081
+
+spring:
+  application:
+    name: hello-ms
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch:
+      registry: true
+
+  instance:
+    hostname: localhost
+    status-page-url: http://localhost:8081/actuator/health
+    health-check-url: http://localhost:8081/actuator/health
+    metadata-map:
+      management.context-path: /actuator
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    #info:
+      #show-details: always
+      #enabled: true
+    health:
+      show-details: always
